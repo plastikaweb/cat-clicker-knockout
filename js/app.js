@@ -40,6 +40,9 @@ var ViewModel = function () {
     this.incrementCounter = function () {
         self.currentCat().clickCount(self.currentCat().clickCount() + 1);
     }
+    this.changeCat = function (cat) {
+        self.currentCat(cat);
+    }
 };
 
 var Cat = function (data) {
@@ -51,9 +54,11 @@ var Cat = function (data) {
     this.title = ko.computed(function () {
         var title;
         var clicks = this.clickCount();
-        if (clicks > 20) {
+        if( clicks > 10) {
+            title = 'old';
+        } else if (clicks > 4) {
             title = 'adult';
-        } else if (clicks > 10) {
+        } else if (clicks > 1) {
             title = 'infant';
         } else {
             title = 'born';
